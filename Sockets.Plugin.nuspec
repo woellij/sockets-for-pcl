@@ -3,7 +3,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata minClientVersion="2.8.1">
     <id>rda.SocketsForPCL</id>
-    <version>1.1.8</version>
+    <version>1.2.1</version>
     <title>Sockets Plugin for Xamarin and Windows (PCL)</title>
     <authors>Ryan Davis</authors>
     <owners>Ryan Davis</owners>
@@ -13,31 +13,28 @@
     <copyright>2015 Ryan Davis</copyright>
     <iconUrl>https://raw.githubusercontent.com/rdavisau/sockets-for-pcl/master/_meta/icon/icon.png</iconUrl>
     <releaseNotes>
-1.1.8 (2015-04-20)
+1.2.1 (2015-06-10)
 
 Bugfixes:
 
-- Fixed 'A method was called at an unexpected time' exception when disconnecting a `UdpSocketMulticastClient` on WinRT. Thanks @aghajani for discovering.
+- Fixed incorrect assembly version for WP8.
 
-Other: 
-
-- Removed unneccessary `async` modifiers and `await` calls.
-
-1.1.6 / 1.1.7 (2015-04-12)
+1.2.0 (2015-05-20)
 
 Features:
 
-- `UdpSocketReceiver` can now be bound to a port chosen by the operating system. Pass `0` to the `port` argument of `StartListeningAsync`. 
+- Support for MonoMac, Xamarin.Mac Classic and Xamarin.Mac Unified. Thanks @NewtonARA.
+- Extension method `GetStream` added to `ITcpSocketClient`, easing migration from .NET projects. Thanks @danielcweber.
 
-Bugfixes:
+Other:
 
-- Calling `Dispose` on a bound `UdpSocketReceiver` or `UdpSocketMulticastClient` now cancels the internal message reading loop.
+- sockets-for-pcl now comes with LINQPad samples! When you add the package to a LINQPad query for the first time, a set of samples will be added to your Samples tab, demonstrating typical usage. 
     </releaseNotes>
     <description>
-      Cross-platform socket API for Xamarin iOS/Android/Forms, Windows Phone 8/8.1, Windows Store and Windows Desktop. Includes support for TCP and UDP listeners and clients, as well as UDP multicast.
+      Cross-platform socket API for Xamarin iOS/Android/Forms, Xamarin.Mac/MonoMac, Windows Phone 8/8.1, Windows Store and Windows Desktop. Includes support for TCP and UDP listeners and clients, as well as UDP multicast.
     </description>
-    <summary>Cross-platform TCP and UDP socket API for Xamarin iOS/Android/Forms, Windows Phone 8/8.1, Windows Store and Windows Desktop.</summary>
-    <tags>sockets, tcp, udp, multicast, xamarin, pcl, xam.pcl, windows phone, winphone, wp8, winrt, android, xamarin.forms, ios</tags>
+    <summary>Cross-platform TCP and UDP socket API for Xamarin iOS/Android/Forms, Xamarin.Mac/MonoMac, Windows Phone 8/8.1, Windows Store and Windows Desktop.</summary>
+    <tags>sockets, tcp, udp, multicast, xamarin, pcl, windows phone, winphone, wp8, winrt, android, xamarin.forms, ios, xamarin.mac, monomac, linqpad-samples</tags>
     <dependencies>
     </dependencies>
   </metadata>
@@ -127,6 +124,36 @@ Bugfixes:
     <file src="Sockets\Sockets.Plugin.Abstractions\bin\Release\Sockets.Plugin.Abstractions.xml"
           target="lib\Xamarin.iOS10\Sockets.Plugin.Abstractions.xml" />
 
+    <!--Xamarin.Mac Unified-->
+    <file src="Sockets\Sockets.Plugin.MacUnified\bin\MacUnified\Release\Sockets.Plugin.dll"
+          target="lib\Xamarin.Mac\Sockets.Plugin.dll" />
+    <file src="Sockets\Sockets.Plugin.MacUnified\bin\MacUnified\Release\Sockets.Plugin.xml"
+          target="lib\Xamarin.Mac\Sockets.Plugin.xml" />
+    <file src="Sockets\Sockets.Plugin.Abstractions\bin\Release\Sockets.Plugin.Abstractions.dll"
+          target="lib\Xamarin.Mac\Sockets.Plugin.Abstractions.dll" />
+    <file src="Sockets\Sockets.Plugin.Abstractions\bin\Release\Sockets.Plugin.Abstractions.xml"
+          target="lib\Xamarin.Mac\Sockets.Plugin.Abstractions.xml" />
+
+    <!--Xamarin.Mac Classic-->
+    <file src="Sockets\Sockets.Plugin.MacClassic\bin\MacClassic\Release\Sockets.Plugin.dll"
+          target="lib\Xamarin.Mac.Classic\Sockets.Plugin.dll" />
+    <file src="Sockets\Sockets.Plugin.MacClassic\bin\MacClassic\Release\Sockets.Plugin.xml"
+          target="lib\Xamarin.Mac.Classic\Sockets.Plugin.xml" />
+    <file src="Sockets\Sockets.Plugin.Abstractions\bin\Release\Sockets.Plugin.Abstractions.dll"
+          target="lib\Xamarin.Mac.Classic\Sockets.Plugin.Abstractions.dll" />
+    <file src="Sockets\Sockets.Plugin.Abstractions\bin\Release\Sockets.Plugin.Abstractions.xml"
+          target="lib\Xamarin.Mac.Classic\Sockets.Plugin.Abstractions.xml" />
+
+    <!--MonoMac-->
+    <file src="Sockets\Sockets.Plugin.MacOpenSource\bin\MacOpenSource\Release\Sockets.Plugin.dll"
+          target="lib\MonoMac\Sockets.Plugin.dll" />
+    <file src="Sockets\Sockets.Plugin.MacOpenSource\bin\MacOpenSource\Release\Sockets.Plugin.xml"
+          target="lib\MonoMac\Sockets.Plugin.xml" />
+    <file src="Sockets\Sockets.Plugin.Abstractions\bin\Release\Sockets.Plugin.Abstractions.dll"
+          target="lib\MonoMac\Sockets.Plugin.Abstractions.dll" />
+    <file src="Sockets\Sockets.Plugin.Abstractions\bin\Release\Sockets.Plugin.Abstractions.xml"
+          target="lib\MonoMac\Sockets.Plugin.Abstractions.xml" />
+
     <!--Windows Desktop-->
     <file src="Sockets\Sockets.Plugin.WindowsDesktop\bin\Release\Sockets.Plugin.dll"
           target="lib\net45\Sockets.Plugin.dll" />
@@ -140,6 +167,10 @@ Bugfixes:
           target="lib\net45\Sockets.Plugin.Abstractions.xml" />
     <file src="Sockets\Sockets.Plugin.Abstractions\bin\Release\Sockets.Plugin.Abstractions.pdb"
           target="lib\net45\Sockets.Plugin.Abstractions.pdb" />
+
+    <!-- LINQPad Samples -->
+    <file src="Sockets\linqpad-samples\**"
+          target="linqpad-samples"/>
 
   </files>
 </package>
